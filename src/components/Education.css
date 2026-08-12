@@ -1,0 +1,157 @@
+.education {
+  background-color: var(--bg-color-secondary);
+}
+
+.education-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.edu-card {
+  display: flex;
+  gap: 24px;
+  padding: 0 0 32px 0;
+  background: transparent !important;
+  border: none !important;
+}
+
+.edu-card:last-child {
+  padding-bottom: 0;
+}
+
+.edu-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50px;
+}
+
+.edu-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  z-index: 2;
+  transition: all var(--transition-speed);
+}
+
+.edu-line {
+  width: 2px;
+  flex: 1;
+  background-color: var(--border-color);
+  margin-top: 12px;
+  opacity: 0.5;
+}
+
+.edu-content {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed);
+}
+
+.edu-card:hover .edu-content {
+  transform: translateX(10px);
+  border-color: var(--accent-color);
+}
+
+.edu-card:hover .edu-icon {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
+}
+
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.edu-degree {
+  font-size: 1.15rem;
+  line-height: 1.4;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.edu-period {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  background: var(--bg-color);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.edu-institution {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin: 0 0 16px 0;
+}
+
+.score-badge {
+  display: inline-block;
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--accent-color);
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Featured (B.Tech) styling */
+.edu-card.featured .edu-icon {
+  border-color: var(--accent-color);
+  color: white;
+  background-color: var(--accent-color);
+  width: 60px;
+  height: 60px;
+  margin-left: -5px;
+}
+
+.edu-card.featured .edu-content {
+  border-color: rgba(88, 166, 255, 0.3);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(88, 166, 255, 0.05) 100%);
+}
+
+.edu-card.featured .edu-degree {
+  font-size: 1.4rem;
+  color: var(--accent-color);
+}
+
+.edu-card.featured .edu-institution {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .edu-card {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .edu-icon-container {
+    display: none; /* Hide timeline line on mobile */
+  }
+  
+  .edu-card:hover .edu-content {
+    transform: translateY(-5px);
+  }
+}

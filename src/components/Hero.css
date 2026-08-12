@@ -1,0 +1,227 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.greeting {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all var(--transition-speed);
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-outline:hover {
+  border-color: var(--text-primary);
+  background-color: var(--bg-card);
+}
+
+.hero-socials {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-speed);
+}
+
+.social-btn:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.profile-photo-container {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+.profile-placeholder, .profile-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--bg-color-secondary);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.visual-accent {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 1;
+  opacity: 0.4;
+  animation: pulse 8s infinite alternate;
+}
+
+.blob-1 {
+  width: 250px;
+  height: 250px;
+  background-color: var(--accent-color);
+  top: -20px;
+  right: -20px;
+}
+
+.blob-2 {
+  width: 200px;
+  height: 200px;
+  background-color: var(--purple-accent);
+  bottom: -20px;
+  left: -20px;
+  animation-delay: -4s;
+}
+
+.hero-bg-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.grid-overlay {
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.1;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+  100% { transform: scale(1.1) translate(10px, 10px); opacity: 0.5; }
+}
+
+@media (max-width: 992px) {
+  .hero-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding-top: 40px;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .hero-visual {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .profile-photo-container {
+    width: 250px;
+    height: 250px;
+  }
+}
