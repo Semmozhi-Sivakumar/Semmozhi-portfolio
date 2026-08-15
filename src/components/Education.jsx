@@ -1,22 +1,14 @@
-import { motion } from 'framer-motion';
-import { GraduationCap, Calendar } from 'lucide-react';
+import { GraduationCap, Calendar, MapPin } from 'lucide-react';
+import GalaxyBackground from './GalaxyBackground';
 import './Education.css';
 
 const educationData = [
   {
-    id: 1,
-    degree: 'B.Tech in Artificial Intelligence & Data Science',
-    institution: 'V.S.B. College of Engineering Technical Campus, Coimbatore',
-    period: '2023 – 2027',
-    score: 'CGPA: 8.4',
-    featured: true
-  },
-  {
-    id: 2,
-    degree: 'Higher Secondary Education',
-    institution: 'Devi Matric Higher Secondary School',
-    period: '2022 – 2023',
-    score: '83.1%',
+    id: 4,
+    degree: 'Primary Education',
+    institution: 'St. Pauls Matriculation School',
+    period: '2020 – 2021',
+    score: '',
     featured: false
   },
   {
@@ -28,64 +20,74 @@ const educationData = [
     featured: false
   },
   {
-    id: 4,
-    degree: 'Primary Education',
-    institution: 'St. Pauls Matriculation School',
-    period: '2020 – 2021',
-    score: '',
+    id: 2,
+    degree: 'Higher Secondary',
+    institution: 'Devi Matric Higher Secondary School',
+    period: '2022 – 2023',
+    score: '83.1%',
     featured: false
+  },
+  {
+    id: 1,
+    degree: 'B.Tech AI & Data Science',
+    institution: 'V.S.B. College of Engineering Technical Campus, Coimbatore',
+    period: '2023 – Present',
+    score: 'CGPA: 8.4',
+    featured: true
   }
 ];
 
 const Education = () => {
   return (
     <section id="education" className="education">
-      <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="section-header"
-        >
-          <h2 className="section-title">Education</h2>
+      <GalaxyBackground density={0.5} glowOpacity={0.04} />
+      <div className="container relative-z2">
+        <div className="section-header">
+          <h2 className="section-title">Education Journey</h2>
           <div className="section-line"></div>
-        </motion.div>
+        </div>
 
-        <div className="education-timeline">
-          {educationData.map((edu, index) => (
-            <motion.div
-              key={edu.id}
-              className={`edu-card glass-panel ${edu.featured ? 'featured' : ''}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div className="edu-icon-container">
-                <div className="edu-icon">
-                  <GraduationCap size={edu.featured ? 32 : 24} />
+        <div className="education-timeline-container">
+          <div className="timeline-line"></div>
+          
+          <div className="milestones-wrapper">
+            {educationData.map((edu, index) => (
+              <div 
+                key={edu.id} 
+                className={`milestone-node ${edu.featured ? 'featured' : ''}`}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div className="milestone-indicator">
+                  <div className="indicator-dot"></div>
                 </div>
-                {index !== educationData.length - 1 && <div className="edu-line"></div>}
-              </div>
-              
-              <div className="edu-content">
-                <div className="edu-header">
-                  <h3 className="edu-degree">{edu.degree}</h3>
-                  <div className="edu-period">
-                    <Calendar size={14} />
-                    <span>{edu.period}</span>
+
+                <div className="milestone-card glass-panel">
+                  <div className="milestone-header">
+                    {edu.featured && (
+                      <span className="status-badge">Currently Pursuing</span>
+                    )}
+                    <h3 className="milestone-degree">{edu.degree}</h3>
+                    <div className="milestone-period">
+                      <Calendar size={14} />
+                      <span>{edu.period}</span>
+                    </div>
+                  </div>
+
+                  <div className="milestone-details">
+                    <div className="milestone-institution">
+                      <MapPin size={14} className="icon-subtle" />
+                      <span>{edu.institution}</span>
+                    </div>
+                    {edu.score && (
+                      <div className="milestone-score">
+                        <span className="score-pill">{edu.score}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <h4 className="edu-institution">{edu.institution}</h4>
-                {edu.score && (
-                  <div className="edu-score">
-                    <span className="score-badge">{edu.score}</span>
-                  </div>
-                )}
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

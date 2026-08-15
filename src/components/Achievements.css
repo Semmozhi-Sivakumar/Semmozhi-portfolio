@@ -14,13 +14,13 @@
 }
 
 .achievement-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   border-color: var(--accent-color);
-  box-shadow: 0 10px 30px rgba(88, 166, 255, 0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .achievement-icon {
-  background: rgba(88, 166, 255, 0.1);
+  background: rgba(229, 9, 20, 0.1);
   width: 80px;
   height: 80px;
   border-radius: 50%;

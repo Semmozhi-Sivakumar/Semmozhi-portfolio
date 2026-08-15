@@ -8,9 +8,9 @@
 }
 
 .hero-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 40px;
   position: relative;
   z-index: 2;
@@ -18,8 +18,10 @@
 }
 
 .hero-content {
-  flex: 1;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .greeting {
@@ -71,8 +73,8 @@
 .btn-primary:hover {
   background-color: var(--accent-hover);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(229, 9, 20, 0.3);
 }
 
 .btn-outline {
@@ -108,97 +110,65 @@
 .social-btn:hover {
   color: var(--accent-color);
   border-color: var(--accent-color);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .hero-visual {
-  flex: 1;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
 .profile-photo-container {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 413 / 531;
+  animation: float 6s ease-in-out infinite;
 }
 
 .profile-placeholder, .profile-photo {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: var(--border-radius);
   object-fit: cover;
-  border: 4px solid var(--bg-color-secondary);
+  border: 1px solid var(--border-color);
   position: relative;
   z-index: 2;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--bg-card);
   color: var(--text-secondary);
   font-size: 0.9rem;
+  transition: all var(--transition-speed);
 }
 
-.visual-accent {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  z-index: 1;
-  opacity: 0.4;
-  animation: pulse 8s infinite alternate;
+.profile-photo:hover {
+  transform: scale(1.02);
+  border-color: var(--accent-color);
+  box-shadow: 0 15px 35px rgba(229, 9, 20, 0.2);
 }
 
-.blob-1 {
-  width: 250px;
-  height: 250px;
-  background-color: var(--accent-color);
-  top: -20px;
-  right: -20px;
-}
 
-.blob-2 {
-  width: 200px;
-  height: 200px;
-  background-color: var(--purple-accent);
-  bottom: -20px;
-  left: -20px;
-  animation-delay: -4s;
-}
 
-.hero-bg-elements {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.grid-overlay {
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.1;
-  mask-image: radial-gradient(circle at center, black, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
-}
-
-@keyframes pulse {
-  0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
-  100% { transform: scale(1.1) translate(10px, 10px); opacity: 0.5; }
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 @media (max-width: 992px) {
   .hero-container {
-    flex-direction: column-reverse;
+    grid-template-columns: 1fr;
     text-align: center;
     padding-top: 40px;
+    gap: 40px;
+  }
+  
+  .hero-content {
+    align-items: center;
   }
   
   .hero-actions {
@@ -211,7 +181,7 @@
   
   .hero-visual {
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
 }
 
@@ -221,7 +191,8 @@
   }
   
   .profile-photo-container {
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    max-width: 280px;
+    height: auto;
   }
 }

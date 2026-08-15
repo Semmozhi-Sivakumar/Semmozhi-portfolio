@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Award, ExternalLink } from 'lucide-react';
+import GalaxyBackground from './GalaxyBackground';
 import './Certifications.css';
 
 const certificationsData = [
@@ -26,7 +27,8 @@ const certificationsData = [
 const Certifications = () => {
   return (
     <section id="certifications" className="certifications">
-      <div className="container">
+      <GalaxyBackground density={0.5} glowOpacity={0.04} />
+      <div className="container relative-z2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

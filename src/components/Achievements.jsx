@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { Trophy } from 'lucide-react';
+import GalaxyBackground from './GalaxyBackground';
 import './Achievements.css';
 
 const Achievements = () => {
   return (
     <section id="achievements" className="achievements">
-      <div className="container">
+      <GalaxyBackground density={0.5} glowOpacity={0.04} />
+      <div className="container relative-z2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

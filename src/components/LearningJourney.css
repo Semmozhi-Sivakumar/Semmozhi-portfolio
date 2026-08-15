@@ -110,12 +110,12 @@
 }
 
 .status-badge.completed {
-  background: rgba(111, 66, 193, 0.15);
+  background: rgba(176, 0, 32, 0.15);
   color: var(--purple-accent);
 }
 
 .status-badge.current {
-  background: rgba(88, 166, 255, 0.15);
+  background: rgba(229, 9, 20, 0.15);
   color: var(--accent-color);
 }
 

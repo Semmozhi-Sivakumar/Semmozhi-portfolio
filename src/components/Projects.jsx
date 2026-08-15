@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, X } from 'lucide-react';
+import { ExternalLink, X, ArrowRight } from 'lucide-react';
 import { Github } from './Icons';
+import GalaxyBackground from './GalaxyBackground';
 import './Projects.css';
 
 const projectData = [
@@ -17,7 +18,9 @@ const projectData = [
     problem: 'Glacial lakes can burst unexpectedly due to rapid melting or shifting ice, causing devastating downstream floods with little to no warning.',
     solution: 'An automated hardware monitoring system deployed at high-risk glacial lakes that tracks environmental metrics and triggers immediate alerts when thresholds are crossed.',
     contribution: 'Designed and assembled the hardware components, programmed the sensor logic, and integrated the SMS notification system.',
-    outcome: 'Successfully created a working prototype capable of detecting water level anomalies and delivering real-time alerts.'
+    outcome: 'Successfully created a working prototype capable of detecting water level anomalies and delivering real-time alerts.',
+    image: '/project_1_glacier.jpg',
+    githubUrl: '#'
   },
   {
     id: 2,
@@ -31,7 +34,9 @@ const projectData = [
     problem: 'Local storage for web applications is not scalable or reliable for handling large volumes of user-uploaded images.',
     solution: 'Leveraged AWS S3 cloud storage to decouple image hosting from the application server, ensuring high availability and scalability.',
     contribution: 'Built the Flask REST API, configured AWS S3 buckets, implemented secure IAM access, and wrote the Boto3 integration scripts.',
-    outcome: 'A fully functional image upload service that reliably stores images in the cloud and retrieves them instantly.'
+    outcome: 'A fully functional image upload service that reliably stores images in the cloud and retrieves them instantly.',
+    image: '/project_2_cloud.jpg',
+    githubUrl: 'https://github.com/Semmozhi-Sivakumar/cloud-image-upload-system'
   },
   {
     id: 3,
@@ -45,7 +50,9 @@ const projectData = [
     problem: 'Manual execution of operational runbooks is time-consuming, prone to human error, and difficult to scale across large infrastructures.',
     solution: 'An automated agent that parses, interprets, and executes runbook instructions autonomously while logging its progress.',
     contribution: 'Developed the core Python logic for interpreting runbook structures and the execution engine that performs the automated steps.',
-    outcome: 'Reduced manual intervention for standardized operational tasks by allowing the agent to follow procedural steps accurately.'
+    outcome: 'Reduced manual intervention for standardized operational tasks by allowing the agent to follow procedural steps accurately.',
+    image: '/project_3_ai.jpg',
+    githubUrl: 'https://github.com/Semmozhi-Sivakumar/runbook-agent'
   }
 ];
 
@@ -120,10 +127,22 @@ const ProjectModal = ({ project, onClose }) => {
             </div>
           </div>
 
-          <div className="modal-footer">
-            <a href={project.github} className={`btn btn-outline ${project.github === '#' ? 'disabled' : ''}`} target="_blank" rel="noopener noreferrer">
-              <Github size={18} /> {project.github === '#' ? 'Code Coming Soon' : 'View Code'}
+          <div className="modal-footer modal-footer-github">
+            <a 
+              href={project.githubUrl} 
+              className={`btn btn-github ${project.githubUrl === '#' ? 'disabled' : ''}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-disabled={project.githubUrl === '#'}
+            >
+              <Github size={20} /> GitHub Repository <ArrowRight size={18} className="arrow-icon" />
             </a>
+            
+            <div className="github-coming-soon">
+              <span className="github-coming-soon-title">Code / Documentation</span>
+              Coming soon
+            </div>
+
             {project.demo !== '#' && (
               <a href={project.demo} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
                 <ExternalLink size={18} /> Live Demo
@@ -138,6 +157,31 @@ const ProjectModal = ({ project, onClose }) => {
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const previewRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (previewRef.current && hoveredProject) {
+      const { clientX, clientY } = e;
+      const previewEl = previewRef.current;
+      const width = previewEl.offsetWidth || 320; // fallback width
+      const height = previewEl.offsetHeight || 180; // fallback height
+      const offset = 25; // 25px away from cursor
+      
+      let x = clientX + offset;
+      let y = clientY + offset;
+      
+      // Boundary checking
+      if (x + width > window.innerWidth) {
+        x = clientX - width - offset;
+      }
+      if (y + height > window.innerHeight) {
+        y = clientY - height - offset;
+      }
+      
+      previewEl.style.transform = `translate(${x}px, ${y}px)`;
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -155,8 +199,9 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="projects">
-      <div className="container">
+    <section id="projects" className="projects" onMouseMove={handleMouseMove}>
+      <GalaxyBackground density={0.6} glowOpacity={0.03} />
+      <div className="container relative-z2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -176,28 +221,36 @@ const Projects = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           {projectData.map((project) => (
-            <motion.div key={project.id} className="project-card glass-panel" variants={itemVariants}>
-              <div className="project-card-inner">
-                <span className="project-category">{project.category}</span>
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.shortDescription}</p>
-                
-                <div className="tags-container">
-                  {project.tags.slice(0, 3).map(tag => (
-                    <span key={tag} className="tag">{tag}</span>
-                  ))}
-                  {project.tags.length > 3 && (
-                    <span className="tag">+{project.tags.length - 3}</span>
-                  )}
-                </div>
+            <motion.div 
+              key={project.id} 
+              className="project-card-wrapper" 
+              variants={itemVariants}
+              onMouseEnter={() => setHoveredProject(project)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              <div className="project-card glass-panel">
+                <div className="project-card-inner">
+                  <span className="project-category">{project.category}</span>
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-description">{project.shortDescription}</p>
+                  
+                  <div className="tags-container">
+                    {project.tags.slice(0, 3).map(tag => (
+                      <span key={tag} className="tag">{tag}</span>
+                    ))}
+                    {project.tags.length > 3 && (
+                      <span className="tag">+{project.tags.length - 3}</span>
+                    )}
+                  </div>
 
-                <div className="project-actions">
-                  <button 
-                    className="btn btn-primary w-full"
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    View Details
-                  </button>
+                  <div className="project-actions">
+                    <button 
+                      className="btn btn-primary w-full"
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      View Details <ArrowRight size={18} />
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -211,6 +264,18 @@ const Projects = () => {
           onClose={() => setSelectedProject(null)} 
         />
       )}
+
+      {/* Cursor following project preview */}
+      <div 
+        ref={previewRef} 
+        className={`project-preview-container ${hoveredProject ? 'active' : ''}`}
+      >
+        <img 
+          src={hoveredProject?.image || projectData[0].image} 
+          alt="Project Preview" 
+          className="project-preview-image" 
+        />
+      </div>
     </section>
   );
 };

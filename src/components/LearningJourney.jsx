@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp, CheckCircle2, Circle } from 'lucide-react';
+import GalaxyBackground from './GalaxyBackground';
 import './LearningJourney.css';
 
 const journeySteps = [
@@ -57,7 +58,8 @@ const LearningJourney = () => {
 
   return (
     <section id="journey" className="learning-journey">
-      <div className="container">
+      <GalaxyBackground density={0.6} glowOpacity={0.04} />
+      <div className="container relative-z2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

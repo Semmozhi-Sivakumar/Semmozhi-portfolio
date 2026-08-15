@@ -21,9 +21,9 @@
 }
 
 .skill-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   border-color: var(--accent-color);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .skill-card-header {
@@ -36,7 +36,7 @@
 }
 
 .skill-icon {
-  background: rgba(88, 166, 255, 0.1);
+  background: rgba(229, 9, 20, 0.1);
   padding: 8px;
   border-radius: 8px;
   display: flex;
@@ -70,6 +70,11 @@
 
 .skill-card:hover .skill-item {
   color: var(--text-primary);
+}
+
+.skill-item:hover {
+  transform: translateX(5px);
+  color: var(--accent-color) !important;
 }
 
 .skill-bullet {

@@ -9,7 +9,6 @@ import Certifications from './components/Certifications';
 import Education from './components/Education';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
-
 function App() {
   return (
     <>

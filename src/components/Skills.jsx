@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Database, Server, Settings, Monitor, BookOpen } from 'lucide-react';
+import GalaxyBackground from './GalaxyBackground';
 import './Skills.css';
 
 const skillCategories = [
@@ -48,7 +49,8 @@ const Skills = () => {
 
   return (
     <section id="skills" className="skills">
-      <div className="container">
+      <GalaxyBackground density={0.7} glowOpacity={0.05} />
+      <div className="container relative-z2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
