@@ -31,6 +31,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 * {
@@ -60,7 +61,7 @@ a {
   transition: color var(--transition-speed);
 }
 
-a:hover {
+a:hover, a:active, a:focus-visible {
   color: var(--accent-hover);
 }
 
@@ -73,7 +74,7 @@ button {
   transition: transform var(--transition-speed);
 }
 
-.btn:hover svg {
+.btn:hover svg, .btn:active svg, .btn:focus-visible svg {
   transform: translateY(-2px);
 }
 

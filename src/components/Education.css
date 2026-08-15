@@ -188,13 +188,15 @@
   letter-spacing: 0.5px;
 }
 
-/* Force featured card details to be permanently open */
-.milestone-node.featured .milestone-details {
-  max-height: 150px;
-  opacity: 1;
-  margin-top: 16px;
+/* Desktop Hover and Expanded State */
+@media (min-width: 993px) {
+  .milestone-node:hover .milestone-details,
+  .milestone-node.expanded .milestone-details {
+    max-height: 150px;
+    opacity: 1;
+    margin-top: 16px;
+  }
 }
-
 
 /* Responsive Layout (Tablet & Mobile) */
 @media (max-width: 992px) {
@@ -237,19 +239,25 @@
     left: -30px; /* Scale transform doesn't change origin center */
   }
   
-  /* On mobile, details are permanently expanded to ensure accessibility since touch doesn't have reliable hover */
-  .milestone-details {
+  /* Tap-to-expand handles mobile */
+  .milestone-node.expanded .milestone-details {
     max-height: 200px;
     opacity: 1;
     margin-top: 16px;
   }
   
+  .milestone-node:active .milestone-card,
+  .milestone-node.expanded .milestone-card {
+    border-color: rgba(229, 9, 20, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
   .milestone-node:hover .milestone-card {
-    transform: translateX(6px); /* Move right instead of up on mobile */
+    transform: none; /* Disable hover translation on mobile */
   }
   
   .milestone-node.featured:hover .milestone-card {
-    transform: translateX(6px);
+    transform: none;
   }
 }
 

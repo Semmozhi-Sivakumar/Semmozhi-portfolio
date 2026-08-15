@@ -228,8 +228,13 @@ const Projects = () => {
               onMouseEnter={() => setHoveredProject(project)}
               onMouseLeave={() => setHoveredProject(null)}
             >
-              <div className="project-card glass-panel">
+              <div className="project-card glass-panel" onClick={() => { if(window.innerWidth <= 992) setSelectedProject(project); }}>
                 <div className="project-card-inner">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="project-inline-image" 
+                  />
                   <span className="project-category">{project.category}</span>
                   <h3 className="project-title">{project.title}</h3>
                   <p className="project-description">{project.shortDescription}</p>
@@ -246,7 +251,10 @@ const Projects = () => {
                   <div className="project-actions">
                     <button 
                       className="btn btn-primary w-full"
-                      onClick={() => setSelectedProject(project)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedProject(project);
+                      }}
                     >
                       View Details <ArrowRight size={18} />
                     </button>

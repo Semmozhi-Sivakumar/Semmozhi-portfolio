@@ -21,7 +21,7 @@ const Footer = () => {
             <a href="https://www.linkedin.com/in/semmozhisivakumar27" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <Linkedin size={24} />
             </a>
-            <a href="mailto:tamizhsemmozhi25@gmail.com" aria-label="Email">
+            <a href="mailto:tamizhsemmozhi25@gmail.com" aria-label="Email me">
               <Mail size={24} />
             </a>
           </div>

@@ -34,7 +34,7 @@ const Contact = () => {
           </p>
           
           <div className="contact-actions">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tamizhsemmozhi25@gmail.com" target="_blank" rel="noopener noreferrer" className="btn btn-primary email-btn">
+            <a href="mailto:tamizhsemmozhi25@gmail.com" className="btn btn-primary email-btn">
               <Mail size={20} /> Email Me Directly &rarr;
             </a>
             

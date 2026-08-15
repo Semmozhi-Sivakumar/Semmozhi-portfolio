@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { GraduationCap, Calendar, MapPin } from 'lucide-react';
 import GalaxyBackground from './GalaxyBackground';
 import './Education.css';
@@ -38,6 +39,8 @@ const educationData = [
 ];
 
 const Education = () => {
+  const [expandedId, setExpandedId] = useState(1); // 1 is B.Tech (Featured)
+
   return (
     <section id="education" className="education">
       <GalaxyBackground density={0.5} glowOpacity={0.04} />
@@ -54,8 +57,9 @@ const Education = () => {
             {educationData.map((edu, index) => (
               <div 
                 key={edu.id} 
-                className={`milestone-node ${edu.featured ? 'featured' : ''}`}
+                className={`milestone-node ${edu.featured ? 'featured' : ''} ${expandedId === edu.id ? 'expanded' : ''}`}
                 style={{ animationDelay: `${index * 0.15}s` }}
+                onClick={() => setExpandedId(expandedId === edu.id ? null : edu.id)}
               >
                 <div className="milestone-indicator">
                   <div className="indicator-dot"></div>

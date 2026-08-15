@@ -78,8 +78,10 @@ const GalaxyBackground = ({ density = 1, glowOpacity = 0.04 }) => {
       initStars();
     }
 
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
     const handleMouseMove = (e) => {
-      if (prefersReducedMotion.matches || window.innerWidth <= 768) return;
+      if (prefersReducedMotion.matches || isTouchDevice) return;
       const rect = canvas.getBoundingClientRect();
       mouse.targetX = e.clientX - rect.left;
       mouse.targetY = e.clientY - rect.top;
