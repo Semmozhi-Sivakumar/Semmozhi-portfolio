@@ -63,7 +63,7 @@ const LearningJourney = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 0.6 }}
           className="section-header"
         >
@@ -82,7 +82,7 @@ const LearningJourney = () => {
               className={`timeline-item ${step.status}`}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="timeline-marker">

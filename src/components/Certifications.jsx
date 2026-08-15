@@ -32,7 +32,7 @@ const Certifications = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 0.6 }}
           className="section-header"
         >
@@ -47,7 +47,7 @@ const Certifications = () => {
               className="cert-card glass-panel"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="cert-icon">

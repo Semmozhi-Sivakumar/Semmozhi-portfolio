@@ -72,6 +72,7 @@ button {
 
 .btn svg {
   transition: transform var(--transition-speed);
+  pointer-events: none;
 }
 
 .btn:hover svg, .btn:active svg, .btn:focus-visible svg {

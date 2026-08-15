@@ -33,9 +33,19 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  position: relative;
+  z-index: 10;
 }
 
-.email-btn {
+.contact-buttons-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.email-btn, .phone-btn {
   font-size: 1.1rem;
   padding: 14px 32px;
 }
@@ -65,7 +75,11 @@
     font-size: 1.8rem;
   }
   
-  .email-btn {
+  .contact-buttons-row {
+    flex-direction: column;
+  }
+  
+  .email-btn, .phone-btn {
     width: 100%;
   }
 }

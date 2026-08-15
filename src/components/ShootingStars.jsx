@@ -103,7 +103,10 @@ const ShootingStars = () => {
       }
     }
 
-    const animate = (timestamp) => {
+    const animate = (time) => {
+      const timestamp = time || performance.now();
+      animationFrameId = requestAnimationFrame(animate);
+
       if (prefersReducedMotion.matches) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -124,8 +127,6 @@ const ShootingStars = () => {
           stars.splice(index, 1);
         }
       });
-
-      animationFrameId = requestAnimationFrame(animate);
     };
 
     animationFrameId = requestAnimationFrame(animate);

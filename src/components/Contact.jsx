@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { Github, Linkedin } from './Icons';
 import GalaxyBackground from './GalaxyBackground';
 import './Contact.css';
@@ -12,7 +12,7 @@ const Contact = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 0.6 }}
           className="section-header"
         >
@@ -24,7 +24,7 @@ const Contact = () => {
           className="contact-content glass-panel"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h3>Let's Connect</h3>
@@ -34,9 +34,14 @@ const Contact = () => {
           </p>
           
           <div className="contact-actions">
-            <a href="mailto:tamizhsemmozhi25@gmail.com" className="btn btn-primary email-btn">
-              <Mail size={20} /> Email Me Directly &rarr;
-            </a>
+            <div className="contact-buttons-row">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tamizhsemmozhi25@gmail.com" target="_blank" rel="noopener noreferrer" className="btn btn-primary email-btn">
+                <Mail size={20} /> Email Me Directly &rarr;
+              </a>
+              <a href="tel:7845250453" aria-label="Call me" className="btn btn-outline phone-btn">
+                <Phone size={20} /> 7845250453
+              </a>
+            </div>
             
             <div className="contact-socials">
               <a href="https://github.com/Semmozhi-Sivakumar" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">

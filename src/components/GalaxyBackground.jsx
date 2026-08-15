@@ -116,10 +116,15 @@ const GalaxyBackground = ({ density = 1, glowOpacity = 0.04 }) => {
       ctx.fillStyle = ambientGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      // Calculate auto-drift for mobile/static movement
+      const time = Date.now();
+      const autoDriftX = isTouchDevice ? time * 0.005 : time * 0.001;
+      const autoDriftY = isTouchDevice ? time * 0.005 : time * 0.001;
+
       // Draw and update stars
       stars.forEach(star => {
-        const offsetX = (mouse.x - centerX) * star.speed;
-        const offsetY = (mouse.y - centerY) * star.speed;
+        const offsetX = (mouse.x - centerX) * star.speed + (autoDriftX * star.speed);
+        const offsetY = (mouse.y - centerY) * star.speed + (autoDriftY * star.speed);
 
         let drawX = (star.baseX - offsetX) % canvas.width;
         let drawY = (star.baseY - offsetY) % canvas.height;
